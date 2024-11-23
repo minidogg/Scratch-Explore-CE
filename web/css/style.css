@@ -1,0 +1,39 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+.flex{
+    display:flex;
+}
+
+#projects{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.project{
+    width:210px;
+    padding:20px;
+    border: solid black 2px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+.projectImg{
+    width: 210px;
+}
+.projectDevPfp{
+    width: 32px;
+}
+
+/* TODO: Fix the ellipsis when text overflows not working */
+.projectName{
+    width:100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+}
+.projectDevName{
+    width:100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+}
