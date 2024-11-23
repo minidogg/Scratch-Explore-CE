@@ -7,7 +7,7 @@ const ENDPOINTS = {
     }
 }
 
-const whitelistedCharacters = "qwertyuiopasdfghjklzxcvbnm.'\"QWERTYUIOPASDFGHJKLZXCVBNM1234567890-_|[]{}# ".split("")
+const whitelistedCharacters = "qwertyuiopasdfghjklzxcvbnm.'\"QWERTYUIOPASDFGHJKLZXCVBNM1234567890-_|[]{} ".split("")
 const offenseCap = 5
 
 const proxy = "/proxy/"
