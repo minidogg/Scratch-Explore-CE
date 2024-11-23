@@ -1,8 +1,14 @@
 :root{
     --scratch-purple: #855cd6;
+    --footer-height: 2.5rem;
 }
 *{
     font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    position: relative;
+    min-height: 100vh;
 }
 
 .flex{
@@ -14,6 +20,7 @@
     width:80%;
     display:block;
     margin:auto;
+    padding-bottom: var(--footer-height);
 }
 
 #projects{
@@ -63,4 +70,11 @@ button{
 }
 button:hover{
     filter: brightness(120%);
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: var(--footer-height);
 }
