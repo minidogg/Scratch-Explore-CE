@@ -53,6 +53,22 @@ async function GetScratchProjects(page = 0){
     })
     
     console.log(`Only ${projects.length} out of ${startCount} filtered projects remain`)
-    console.log(projects.map(e=>e.title).join("\n"))
+    // console.log(projects.map(e=>e.title).join("\n"))
+    console.log(projects)
+
+    return projects
 }
+
 GetScratchProjects(0)
+GetScratchProjects(1)
+
+function sanitizeHTML(inputString) {
+    // Create a temporary DOM element to use browser's built-in parser
+    const parser = new DOMParser();
+    
+    // Parse the string into a document and extract the text content
+    const doc = parser.parseFromString(inputString, 'text/html');
+    
+    // Return the text content of the parsed document (which removes all HTML tags)
+    return doc.body.textContent || doc.body.innerText || '';
+}
