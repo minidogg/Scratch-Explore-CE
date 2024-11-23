@@ -1,14 +1,26 @@
+:root{
+    --scratch-purple: #855cd6;
+}
 *{
     font-family: Arial, Helvetica, sans-serif;
 }
+
 .flex{
     display:flex;
+}
+
+#content{
+    min-width: 300px;
+    width:80%;
+    display:block;
+    margin:auto;
 }
 
 #projects{
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    width: 100%;
+    justify-content: space-between;
 }
 .project{
     width:210px;
@@ -36,4 +48,19 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     display: block;
+}
+
+button{
+    all: unset;
+    background-color: var(--scratch-purple);
+    color: white;
+    padding: 20px 50px;
+    font-size: 1.5em;
+    border-radius:20px;
+    text-align: center;
+    width:90%;
+    cursor: pointer;
+}
+button:hover{
+    filter: brightness(120%);
 }
