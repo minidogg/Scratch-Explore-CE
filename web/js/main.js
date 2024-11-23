@@ -9,8 +9,12 @@ const ENDPOINTS = {
 
 const whitelistedCharacters = "qwertyuiopasdfghjklzxcvbnm.'\"QWERTYUIOPASDFGHJKLZXCVBNM1234567890-_|[]{}# ".split("")
 const offenseCap = 5
+const proxy = ""
 
 async function GET_json(url){
+    if(proxy!=""){
+        url = proxy+encodeURIComponent(url)
+    }
     let response = await fetch(url)
     if(response.status!=200){
         console.error(response)
@@ -38,5 +42,4 @@ async function GetScratchProjects(page = 0){
     console.log(`Only ${projects.length} out of ${startCount} filtered projects remain`)
     console.log(projects.map(e=>e.title).join("\n"))
 }
-await GetScratchProjects(0)
-await GetScratchProjects(1)
+GetScratchProjects(0)
