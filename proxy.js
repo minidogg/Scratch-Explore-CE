@@ -6,9 +6,14 @@ const port = 8010
 const baseURL = "https://api.scratch.mit.edu/"
 
 app.use(cors())
-app.get("/proxy",async(req, res)=>{
-    let newPath = req.path.replace("/proxy", "")
-    let resp = await (await fetch(baseURL+newPath)).text()
+app.use(async(req, res, next)=>{
+    if(!req.path.startsWith("/proxy")){
+        next()
+        return;
+    }
+    let newPath = baseURL+req.url.replace("/proxy/", "")
+    console.log(newPath)
+    let resp = await (await fetch(newPath)).text()
 
     res.send(resp)
 })
