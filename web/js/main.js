@@ -76,28 +76,44 @@ function escapeHtml(str) {
     });
 }
 
-function CreateProjectElement(projectLink = "https://scratch.mit.edu/projects/513518804/"){
+function CreateProjectElement(
+    projectName = "Block Blast!",
+    projectImg = "https://cdn2.scratch.mit.edu/get_image/project/513518804_480x360.png",
+    projectLink = "https://scratch.mit.edu/projects/513518804/",
+
+    projectDevName = "Juicity",
+    projectDevPfp = "https://cdn2.scratch.mit.edu/get_image/user/69377286_32x32.png",
+    projectDevLink = "https://scratch.mit.edu/users/Juicity/",
+){
     let div = document.createElement("div")
     div.classList.add("project")
 
+    projectName = escapeHtml(projectName)
+    projectImg = escapeHtml(projectImg)
     projectLink = escapeHtml(projectLink)
+
+    projectDevName = escapeHtml(projectDevName)
+    projectDevPfp = escapeHtml(projectDevPfp)
+    projectDevLink = escapeHtml(projectDevLink)
 
 
     div.innerHTML = `
         <a href="${projectLink}">
-            <img src="https://cdn2.scratch.mit.edu/get_image/project/513518804_480x360.png" class="projectImg">
+            <img src="${projectImg}" class="projectImg">
         </a>
         
         <div class="flex">
-            <a href="https://scratch.mit.edu/users/Juicity/">
-                <img src="https://cdn2.scratch.mit.edu/get_image/user/69377286_32x32.png" class="projectDevPfp">
+            <a href="${projectDevLink}">
+                <img src="${projectDevPfp}" class="projectDevPfp">
             </a>
             <div>
-                <a href="https://scratch.mit.edu/projects/513518804/" class="projectName">Block Blast!</a>
-                <a href="https://scratch.mit.edu/users/Juicity/" class="projectDevName">Juicity</a>
+                <a href="${projectLink}" class="projectName">${projectName}</a>
+                <a href="${projectDevLink}" class="projectDevName">${projectDevName}</a>
             </div>
         </div>  
     `
 
     return div
 }
+let sampleProjectElement = CreateProjectElement()
+document.querySelector("#projects").appendChild(sampleProjectElement)
