@@ -3,15 +3,26 @@ const ENDPOINTS = {
     explore: (limit=16,offset=0,q="*",mode="trending",language="en")=>{
         if(limit>16)throw "Max of 16 projects at a time!"
 
-        return `explore/projects?limit=${limit}&offset=${offset}&language=${language}&mode=${mode}&q=${q}`
+        return `${ENDPOINTS.base}explore/projects?limit=${limit}&offset=${offset}&language=${language}&mode=${mode}&q=${q}`
     }
 }
 
 const whitelistedCharacters = "qwertyuiopasdfghjklzxcvbnm.'\"QWERTYUIOPASDFGHJKLZXCVBNM1234567890-_|[]{}# ".split("")
 const offenseCap = 5
 
+async function GET_json(url){
+    let response = await fetch(url)
+    if(response.status!=200){
+        console.error(response)
+        throw "Something went wrong when fetching "+url
+    }
+    response = await response.json()
+
+    return response
+}
+
 async function GetScratchProjects(page = 0){
-    let projects = await (await fetch(ENDPOINTS.explore(16, 16*page))).json()
+    let projects = await GET_json(ENDPOINTS.explore(16, 16*page))
     let startCount = projects.length
     
     
