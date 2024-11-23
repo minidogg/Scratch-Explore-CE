@@ -10,7 +10,7 @@ const ENDPOINTS = {
 const whitelistedCharacters = "qwertyuiopasdfghjklzxcvbnm.'\"QWERTYUIOPASDFGHJKLZXCVBNM1234567890-_|[]{}# ".split("")
 const offenseCap = 5
 
-const proxy = "http://localhost:8010/proxy/"
+const proxy = "/proxy/"
 const proxyType = "RESTRICTED" // RESTRICTED or UNRESTRICTED
 
 async function GET_json(url){
