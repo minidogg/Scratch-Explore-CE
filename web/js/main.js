@@ -128,3 +128,29 @@ function GetScratchProjectDisplayData(project){
         projectDevLink: "https://scratch.mit.edu/users/"+project.author.username,
     }
 }
+
+let projectsDiv = document.querySelector("#projects")
+let currentPage = 0
+async function LoadMoreProjects(){
+    console.log("Fetching more projects")
+    let projects = await GetScratchProjects(currentPage)
+
+    console.log("Loading project display data")
+    projects = projects.map(project=>GetScratchProjectDisplayData(project))
+    console.log(projects)
+
+    console.log("Converting to project elements")
+    projects = projects.map(project=>{
+        return CreateProjectElement(project.projectName, project.projectImg, project.projectlink, project.projectDevName, project.projectDevPfp, project.projectDevLink)
+    })
+    console.log(projects)
+
+    console.log("Appending projects to the project div")
+    projects.forEach(project=>{
+        projectsDiv.appendChild(project)
+    })
+
+    currentPage++
+} 
+document.getElementById("loadMore").addEventListener("click", LoadMoreProjects)
+LoadMoreProjects()
