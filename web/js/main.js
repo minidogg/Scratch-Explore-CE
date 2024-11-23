@@ -3,17 +3,30 @@ const ENDPOINTS = {
     explore: (limit=16,offset=0,q="*",mode="trending",language="en")=>{
         if(limit>16)throw "Max of 16 projects at a time!"
 
-        return `${ENDPOINTS.base}explore/projects?limit=${limit}&offset=${offset}&language=${language}&mode=${mode}&q=${q}`
+        return `explore/projects?limit=${limit}&offset=${offset}&language=${language}&mode=${mode}&q=${q}`
     }
 }
 
 const whitelistedCharacters = "qwertyuiopasdfghjklzxcvbnm.'\"QWERTYUIOPASDFGHJKLZXCVBNM1234567890-_|[]{}# ".split("")
 const offenseCap = 5
-const proxy = "https://corsproxy.io/?"
+
+const proxy = "http://localhost:8010/proxy/"
+const proxyType = "RESTRICTED" // RESTRICTED or UNRESTRICTED
 
 async function GET_json(url){
     if(proxy!=""){
-        url = proxy+encodeURIComponent(url)
+        switch (proxyType) {
+            case ("RESTRICTED"):
+                url = proxy+url
+                break;
+            case("UNRESTRICTED"):
+                url = proxy+encodeURIComponent(url)
+                break;
+            default:
+                throw "Unrecognized proxy type"
+        }
+    }else{
+        url = ENDPOINTS.base+url
     }
     let response = await fetch(url)
     if(response.status!=200){
