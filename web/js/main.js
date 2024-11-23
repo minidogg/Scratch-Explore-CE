@@ -59,9 +59,6 @@ async function GetScratchProjects(page = 0){
     return projects
 }
 
-GetScratchProjects(0)
-GetScratchProjects(1)
-
 function escapeHtml(str) {
     return str.replace(/[&<>"'`]/g, function(match) {
         switch (match) {
@@ -115,5 +112,7 @@ function CreateProjectElement(
 
     return div
 }
-let sampleProjectElement = CreateProjectElement()
-document.querySelector("#projects").appendChild(sampleProjectElement)
+
+function GetScratchProjectDisplayData(project){
+
+}
