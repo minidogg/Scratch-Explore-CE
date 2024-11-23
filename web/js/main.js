@@ -9,7 +9,7 @@ const ENDPOINTS = {
 
 const whitelistedCharacters = "qwertyuiopasdfghjklzxcvbnm.'\"QWERTYUIOPASDFGHJKLZXCVBNM1234567890-_|[]{}# ".split("")
 const offenseCap = 5
-const proxy = ""
+const proxy = "https://corsproxy.io/?"
 
 async function GET_json(url){
     if(proxy!=""){
