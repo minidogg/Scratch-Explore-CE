@@ -113,6 +113,18 @@ function CreateProjectElement(
     return div
 }
 
-function GetScratchProjectDisplayData(project){
+function FindBestImage(images){
+    // TODO: Implement image finding logic
+}
 
+function GetScratchProjectDisplayData(project){
+    return {
+        projectName: project.title,
+        projectImg: project.image,
+        projectLink: "https://scratch.mit.edu/projects/"+project.id,
+    
+        projectDevName: project.author.username,
+        projectDevPfp: project.author.profile.images["32x32"],
+        projectDevLink: "https://scratch.mit.edu/users/"+project.author.username,
+    }
 }
