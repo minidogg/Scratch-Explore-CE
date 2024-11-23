@@ -62,13 +62,42 @@ async function GetScratchProjects(page = 0){
 GetScratchProjects(0)
 GetScratchProjects(1)
 
-function sanitizeHTML(inputString) {
-    // Create a temporary DOM element to use browser's built-in parser
-    const parser = new DOMParser();
-    
-    // Parse the string into a document and extract the text content
-    const doc = parser.parseFromString(inputString, 'text/html');
-    
-    // Return the text content of the parsed document (which removes all HTML tags)
-    return doc.body.textContent || doc.body.innerText || '';
+function escapeHtml(str) {
+    return str.replace(/[&<>"'`]/g, function(match) {
+        switch (match) {
+            case '&': return '&amp;';
+            case '<': return '&lt;';
+            case '>': return '&gt;';
+            case '"': return '&quot;';
+            case "'": return '&#39;';
+            case '`': return '&#96;';
+            default: return match;
+        }
+    });
+}
+
+function CreateProjectElement(projectLink = "https://scratch.mit.edu/projects/513518804/"){
+    let div = document.createElement("div")
+    div.classList.add("project")
+
+    projectLink = escapeHtml(projectLink)
+
+
+    div.innerHTML = `
+        <a href="${projectLink}">
+            <img src="https://cdn2.scratch.mit.edu/get_image/project/513518804_480x360.png" class="projectImg">
+        </a>
+        
+        <div class="flex">
+            <a href="https://scratch.mit.edu/users/Juicity/">
+                <img src="https://cdn2.scratch.mit.edu/get_image/user/69377286_32x32.png" class="projectDevPfp">
+            </a>
+            <div>
+                <a href="https://scratch.mit.edu/projects/513518804/" class="projectName">Block Blast!</a>
+                <a href="https://scratch.mit.edu/users/Juicity/" class="projectDevName">Juicity</a>
+            </div>
+        </div>  
+    `
+
+    return div
 }
